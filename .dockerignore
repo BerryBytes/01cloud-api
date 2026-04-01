@@ -1,0 +1,16 @@
+.git
+.github
+.idea
+.vscode
+.env
+.env.*
+Makefile
+README.md
+CONTRIBUTING.md
+CHANGELOG.md
+SECURITY.md
+CODE_OF_CONDUCT.md
+docs/
+uploads/
+data/
+vendor/

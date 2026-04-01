@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security report
+    url: https://github.com/01cloud/01cloud-api/blob/main/SECURITY.md
+    about: Please report security vulnerabilities privately using the security policy.
+  - name: Contribution guide
+    url: https://github.com/01cloud/01cloud-api/blob/main/CONTRIBUTING.md
+    about: Read the contributor setup and pull request expectations before submitting changes.
+  - name: Support guide
+    url: https://github.com/01cloud/01cloud-api/blob/main/SUPPORT.md
+    about: Use the support guide to decide whether your question belongs in an issue, PR, or security report.

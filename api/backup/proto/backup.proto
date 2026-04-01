@@ -1,0 +1,144 @@
+syntax = "proto3";
+
+package backup;
+
+option go_package = ".;backup";
+
+service Backup {
+  rpc CreateBackup(CreateBackupRequest) returns (CreateBackupResponse) {}
+  rpc ListBackup(ListBackupRequest) returns (ListBackupResponse) {}
+  rpc DetailBackup(DetailBackupRequest) returns (DetailBackupResponse) {}
+  rpc PreserveBackup(PreserveBackupRequest) returns (PreserveBackupResponse) {}
+  rpc RestoreBackup(RestoreBackupRequest) returns (RestoreBackupResponse) {}
+  rpc RestoreListBackup(RestoreListRequest) returns (RestoreListResponse) {}
+  rpc DeleteBackup(DeleteBackupRequest) returns (DeleteBackupResponse) {}
+  rpc GetSettingBackup(GetSettingBackupRequest) returns (GetSettingBackupResponse) {}
+  rpc SaveSettingBackup(SaveSettingBackupRequest) returns (SaveSettingBackupResponse) {}
+  rpc AddLabelBackup(AddLabelRequest) returns (AddLabelResponse) {}
+}
+
+message BackupMessage{
+  int64 id = 1;
+  string namespace = 2;
+  string name = 3;
+  string environment_type = 4;
+  string snapshot = 5;
+  int64 created = 6;
+  int64 restored = 7;
+  int64 duration = 8;
+  bool preserved = 9;
+  string status = 10;
+  int64 triggered_by = 11;
+  string triggered_by_name = 12;
+  repeated Label label = 13;
+  string remarks = 14;
+}
+
+message CreateBackupRequest {
+  BackupMessage backup = 1;
+  string path = 2;
+}
+
+message CreateBackupResponse {
+  bool ok = 1;
+}
+
+message ListBackupRequest {
+  string namespace = 1;
+  int64 page = 2;
+  int64 limit = 3;
+  string path = 4;
+}
+
+message ListBackupResponse {
+  bool ok = 1;
+  repeated BackupMessage backups = 2;
+}
+
+message RestoreListRequest {
+  string namespace = 1;
+  int64 page = 2;
+  int64 limit = 3;
+  string path = 4;
+}
+
+message RestoreListResponse {
+  bool ok = 1;
+  repeated BackupMessage backups = 2;
+}
+
+message DetailBackupRequest {
+  int64 id = 1;
+  string path = 2;
+}
+
+message DetailBackupResponse {
+  bool ok = 1;
+  BackupMessage backup = 2;
+}
+
+message PreserveBackupRequest {
+  int64 id = 1;
+  bool preserve = 2;
+  string path = 3;
+}
+
+message PreserveBackupResponse {
+  bool ok = 1;
+}
+
+message RestoreBackupRequest {
+  int64 id = 1;
+  string path = 2;
+  string triggered_by_name = 4;
+}
+
+message RestoreBackupResponse {
+  bool ok = 1;
+}
+
+message DeleteBackupRequest {
+  int64 id = 1;
+  string path = 2;
+}
+
+message DeleteBackupResponse {
+  bool ok = 1;
+}
+
+message GetSettingBackupRequest {
+  string namespace = 1;
+  string path = 2;
+}
+
+message GetSettingBackupResponse {
+  bool ok = 1;
+  int64 modified = 2;
+  string json_setting = 3;
+}
+
+message SaveSettingBackupRequest {
+  string namespace = 1;
+  string json_setting = 2;
+  string path = 3;
+}
+
+message SaveSettingBackupResponse {
+  bool ok = 1;
+}
+
+message Label {
+  string key = 1;
+  string value = 2;
+}
+
+message AddLabelRequest {
+int64 id = 1;
+string path = 2;
+repeated Label label = 3;
+}
+
+message AddLabelResponse {
+  bool ok = 1;
+  repeated Label label = 2;
+}

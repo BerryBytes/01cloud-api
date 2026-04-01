@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package notification;
+
+service Notification {
+  rpc Publish(PostRequest) returns (PostResponse) {}
+  rpc Post(PostRequest) returns (PostResponse) {}
+  rpc Query(QueryRequest) returns (QueryResponse) {}
+  rpc Update(UpdateRequest) returns (UpdateResponse) {}
+  rpc MarkAll(MarkAllRequest) returns (MarkAllResponse) {}
+  rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+  rpc SendEmail(SendEmailRequest) returns (SendEmailResponse) {}
+}
+
+message Message {
+  int64 id = 1;
+  string organizationName = 2;
+  int64 organizationId = 3;
+  string applicationName = 4;
+  int64 applicationId = 5;
+  string environmentName = 6;
+  int64 environmentId = 7;
+  string environmentResourceName = 8;
+  int64 environmentResourceId = 9;
+  string projectName = 10;
+  int64 projectId = 11;
+  string type = 12;
+  string body = 13;
+  string sendBy = 14;
+  string scope = 15;
+  int64 scopeId = 16;
+  string action = 17;
+  int64 user = 18;
+  string userName = 19;
+  int64 triggeredBy = 20;
+  string triggeredByName = 21;
+  bool seen = 22;
+  int64 createTimestamp = 23;
+  int64 updateTimestamp = 24;
+}
+
+message QueryRequest {
+  int64 user = 1;
+  int64 offset = 2;
+  int64 limit = 3;
+  string type = 4;
+  string filter = 5;
+}
+
+message EmailMessage{
+repeated string user = 1;
+string subject = 2;
+string body=3;
+string link=4;
+string caption=5;
+}
+
+message QueryResponse {
+  repeated Message messages = 1;
+}
+
+message PostRequest {
+  Message message = 1;
+}
+
+message PostResponse {
+  Message message = 1;
+}
+
+message UpdateRequest {
+  Message message = 1;
+}
+
+message UpdateResponse {
+  Message message = 1;
+}
+
+message DeleteRequest {
+  int64 id = 1;
+}
+
+message DeleteResponse {
+  Message message = 1;
+}
+
+message MarkAllRequest {
+  int64 user = 1;
+  int64 type = 2;
+}
+
+message MarkAllResponse {
+  bool success = 1;
+}
+
+message SendEmailRequest {
+  EmailMessage message = 1;
+}
+
+message SendEmailResponse {
+  bool success = 1;
+}
