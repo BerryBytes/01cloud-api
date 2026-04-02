@@ -10,7 +10,7 @@ require (
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/ashwanthkumar/slack-go-webhook v0.0.0-20200209025033-430dd4e66960
 	github.com/aws/aws-sdk-go v1.34.27
-	github.com/berrybytes/01cloud-store v0.0.0-00010101000000-000000000000
+	// github.com/berrybytes/01cloud-store v0.0.0-00010101000000-000000000000
 	github.com/berrybytes/dockerhub-go v1.0.3
 	github.com/cloudflare/cloudflare-go v0.16.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
