@@ -59,8 +59,8 @@ repos:
   # ==========================================
   - repo: local
     hooks:
-      - id: trivy
-        name: trivy
+      - id: trivy-fs
+        name: trivy fs scan
         entry: bash -c 'TRIVY_CACHE_DIR=${TRIVY_CACHE_DIR:-$HOME/.cache/trivy} trivy fs --scanners vuln,secret,misconfig --severity HIGH,CRITICAL --exit-code 1 .'
         language: system
         pass_filenames: false
