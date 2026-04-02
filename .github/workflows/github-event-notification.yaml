@@ -21,7 +21,7 @@ on:
 
 jobs:
   notify:
-    uses: berrybytes/actions/.github/workflows/notifications.yaml@main
+    uses: BerryBytes/workflows/.github/workflows/notifications.yaml@main
     secrets:
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
