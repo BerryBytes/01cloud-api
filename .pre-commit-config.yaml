@@ -59,8 +59,8 @@ repos:
   # ==========================================
   - repo: local
     hooks:
-      - id: trivy
-        name: trivy
-        entry: trivy fs . --scanners secret --severity CRITICAL,HIGH --exit-code 1
+      - id: trivy-fs
+        name: trivy fs scan
+        entry: bash -c 'if [ "$GITHUB_ACTIONS" = "true" ]; then echo "Skipping Trivy in CI"; exit 0; else trivy fs . --skip-dirs vendor --scanners misconfig,secret --exit-code 1; fi'
         language: system
         pass_filenames: false

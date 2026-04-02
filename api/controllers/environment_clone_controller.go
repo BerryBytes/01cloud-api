@@ -228,7 +228,7 @@ func (server *Server) CloneEnvironment(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	if environmentCreated.ExternalLogging.RawMessage != nil && len(environmentCreated.ExternalLogging.RawMessage) > 0 {
+if environmentCreated.ExternalLogging.RawMessage != nil && len(environmentCreated.ExternalLogging.RawMessage) > 0 {
 		loggingReq, err := logging.PrepareLoggingRequest(environmentCreated)
 		if err != nil {
 			responses.ERROR(w, http.StatusUnprocessableEntity, err)

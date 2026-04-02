@@ -19,10 +19,12 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
 FROM alpine:3.19
 RUN adduser -D nonroot
+RUN apk add --no-cache wget
 WORKDIR /app
 RUN chown nonroot:nonroot /app
 USER nonroot
 RUN touch .env
 COPY --chown=nonroot:nonroot --from=builder /app/main .
 COPY --chown=nonroot:nonroot --from=builder /app/docs/* ./docs/
+HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 CMD wget -qO- http://127.0.0.1:8081/ >/dev/null || exit 1
 CMD ["./main"]
