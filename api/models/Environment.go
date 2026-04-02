@@ -577,7 +577,7 @@ func (data *Environment) Update(db *gorm.DB) (*Environment, error) {
 	if data.Name != "" {
 		app.Name = data.Name
 	}
-	if len(data.Setting.RawMessage) > 0 {
+	if data.Setting.RawMessage != nil && len(data.Setting.RawMessage) > 0 {
 		app.Setting.RawMessage = data.Setting.RawMessage
 	}
 	if data.ApplicationID != 0 {

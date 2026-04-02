@@ -178,7 +178,7 @@ func PrepareLoggingRequest(input *models.Environment) (*LoggingRequest, error) {
 }
 
 func ValidateLoggingRequest(data postgres.Jsonb) error {
-	if len(data.RawMessage) == 0 {
+	if data.RawMessage == nil || len(data.RawMessage) == 0 {
 		return nil
 	}
 	e := &LoggingRequest{}
