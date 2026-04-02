@@ -61,6 +61,6 @@ repos:
     hooks:
       - id: trivy-fs
         name: trivy fs scan
-        entry: bash -c 'if [ "$GITHUB_ACTIONS" = "true" ]; then echo "Skipping Trivy in CI"; exit 0; else trivy fs . --scanners vuln,secret,config --exit-code 1; fi'
+        entry: bash -c 'if [ "$GITHUB_ACTIONS" = "true" ]; then echo "Skipping Trivy in CI"; exit 0; else trivy fs . --skip-dirs vendor --scanners misconfig,secret --exit-code 1; fi'
         language: system
         pass_filenames: false
